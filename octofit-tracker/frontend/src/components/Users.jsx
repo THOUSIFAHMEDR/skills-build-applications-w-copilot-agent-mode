@@ -1,8 +1,13 @@
 import ResourceList from './ResourceList.jsx'
 
 function Users() {
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+    : 'http://localhost:8000/api/users/'
+
   return (
     <ResourceList
+      endpoint={endpoint}
       resource="users"
       title="Athletes"
       emptyMessage="No athletes found."

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { fetchResources } from '../api.js'
 
-function ResourceList({ resource, title, renderItem, emptyMessage }) {
+function ResourceList({ endpoint, resource, title, renderItem, emptyMessage }) {
   const [items, setItems] = useState([])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let active = true
-    fetchResources(resource)
+    fetchResources(endpoint)
       .then((nextItems) => {
         if (active) setItems(nextItems)
       })
@@ -21,7 +21,7 @@ function ResourceList({ resource, title, renderItem, emptyMessage }) {
     return () => {
       active = false
     }
-  }, [resource])
+  }, [endpoint, resource])
 
   return (
     <section>

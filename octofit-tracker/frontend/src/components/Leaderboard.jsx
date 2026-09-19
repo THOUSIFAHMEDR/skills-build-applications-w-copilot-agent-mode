@@ -1,8 +1,13 @@
 import ResourceList from './ResourceList.jsx'
 
 function Leaderboard() {
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+    : 'http://localhost:8000/api/leaderboard/'
+
   return (
     <ResourceList
+      endpoint={endpoint}
       resource="leaderboard"
       title="Leaderboard"
       emptyMessage="The leaderboard is waiting for its first scores."
